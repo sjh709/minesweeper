@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>지뢰 찾기</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section id="wrapper">
+      <h1 class="title">지뢰 찾기</h1>
+      <div class="gameSet">
+        <div class="level">
+          <button id="level1">초급</button>
+          <button id="level2">중급</button>
+          <button id="level3">고급</button>
+          <button id="level4">최고급</button>
+          <button id="levelSet">맞춤형</button>
+        </div>
+        <div class="setting">
+          <input id="row" type="number" placeholder="가로" />
+          <input id="col" type="number" placeholder="세로" />
+          <input id="mineNum" type="number" placeholder="지뢰 개수" />
+          <button class="game-start">게임 시작</button>
+        </div>
+      </div>
+      <div class="gameBoard"></div>
+    </section>
+
+    <script src="main.js"></script>
+  </body>
+</html>
