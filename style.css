@@ -30,7 +30,7 @@ button {
 table,
 tr,
 td {
-  border: 1px solid var(--color-primary-variant);
+  text-align: center;
 }
 
 tr,
@@ -38,6 +38,7 @@ td {
   width: 30px;
   height: 30px;
   border-radius: 10%;
+  border: 1px solid var(--color-primary-variant);
 }
 
 input:focus {
@@ -75,6 +76,12 @@ button:active {
   background-color: var(--color-accent);
   color: var(--color-text);
   margin-bottom: 1rem;
+  box-shadow: 4px 8px 8px rgba(0, 0, 0, 0.38);
+}
+
+.level button:hover {
+  cursor: pointer;
+  filter: brightness(120%);
 }
 
 .setting {
@@ -105,9 +112,19 @@ button:active {
   font-size: 1.2rem;
   background-color: var(--color-accent);
   color: var(--color-text);
+  box-shadow: 4px 8px 8px rgba(0, 0, 0, 0.38);
+}
+
+.setting.open button:hover {
+  cursor: pointer;
+  filter: brightness(120%);
 }
 
 .gameBoard {
   display: flex;
   justify-content: center;
 }
+
+/* .mine {
+  background-color: tomato;
+} */
