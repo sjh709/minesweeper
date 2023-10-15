@@ -6,6 +6,9 @@ const level = document.querySelector(".level");
 const level_btn = document.querySelectorAll(".level button");
 const setting = document.querySelector(".setting");
 const gameStart = document.querySelector(".game-start");
+const navbar = document.querySelector(".navbar");
+const nav_mine = document.querySelector(".nav_mine");
+const restart_btn = document.querySelector(".restart_btn");
 
 const tdArr = document.getElementsByTagName("td");
 
@@ -57,10 +60,15 @@ function init() {
 
     setGame(row, col, mineNum);
   });
+
+  // 게임 재시작
+  restart_btn.addEventListener("click", () => window.location.reload());
 }
 
 function setGame(row, col, mineNum) {
   gameSet.style.display = "none";
+  navbar.classList.add("open");
+  nav_mine.innerText = mineNum;
 
   const mineArr = setMineArr(mineNum, row * col); // 지뢰 배열 생성
 
@@ -123,7 +131,7 @@ function clickEvent(idx, row, col) {
   const outArr = outsideArr(idx, row, col); // 주변 타일 배열
 
   if (tdArr[idx].classList.contains("mine")) {
-    alert("GAME OVER!!!");
+    alert("GAME OVER!!!!!");
     // 모든 지뢰 공개
     for (let i = 0; i < tdArr.length; i++) {
       if (tdArr[i].classList.contains("mine")) {
@@ -131,6 +139,8 @@ function clickEvent(idx, row, col) {
         tdArr[i].style.backgroundColor = "#f44336";
         tdArr[i].dataset.isOpen = "true";
       }
+      // 마우스 클릭 금지
+      tdArr[i].style.pointerEvents = "none";
     }
   } else {
     tdArr[idx].style.backgroundColor = "#f2f2f2";
@@ -196,18 +206,23 @@ function outsideArr(num, row, col) {
 function rightClick(idx) {
   if (tdArr[idx].dataset.isOpen) return;
 
+  let mineNum = Number(nav_mine.innerText);
+
   if (tdArr[idx].classList.contains("flag")) {
     tdArr[idx].classList.remove("flag");
     tdArr[idx].classList.add("qmark");
     tdArr[idx].innerText = "❓";
+    nav_mine.innerText = ++mineNum;
   } else if (tdArr[idx].classList.contains("qmark")) {
     tdArr[idx].classList.remove("qmark");
     tdArr[idx].innerText = "";
     tdArr[idx].style.backgroundColor = "#fafafa";
   } else {
+    if (mineNum === 0) return;
     tdArr[idx].classList.add("flag");
     tdArr[idx].innerText = "🚩";
     tdArr[idx].style.backgroundColor = "#ede7f6";
+    nav_mine.innerText = --mineNum;
   }
 }
 
