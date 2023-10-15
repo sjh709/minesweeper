@@ -20,6 +20,9 @@ const colors = [
   "#f57c00",
 ];
 
+// 우클릭 방지
+window.addEventListener("contextmenu", (e) => e.preventDefault());
+
 function init() {
   // 게임 난이도 선택 (초급, 중급, 고급, 최고급, 맞춤형)
   level_btn.forEach((btn) => {
@@ -68,6 +71,9 @@ function setGame(row, col, mineNum) {
   for (let i = 0; i < tdArr.length; i++) {
     tdArr[i].addEventListener("click", () => {
       clickEvent(i, row, col);
+    });
+    tdArr[i].addEventListener("auxclick", () => {
+      rightClick(i);
     });
   }
 }
@@ -185,6 +191,24 @@ function outsideArr(num, row, col) {
     num + col,
     num + col + 1,
   ];
+}
+
+function rightClick(idx) {
+  if (tdArr[idx].dataset.isOpen) return;
+
+  if (tdArr[idx].classList.contains("flag")) {
+    tdArr[idx].classList.remove("flag");
+    tdArr[idx].classList.add("qmark");
+    tdArr[idx].innerText = "❓";
+  } else if (tdArr[idx].classList.contains("qmark")) {
+    tdArr[idx].classList.remove("qmark");
+    tdArr[idx].innerText = "";
+    tdArr[idx].style.backgroundColor = "#fafafa";
+  } else {
+    tdArr[idx].classList.add("flag");
+    tdArr[idx].innerText = "🚩";
+    tdArr[idx].style.backgroundColor = "#ede7f6";
+  }
 }
 
 init();
