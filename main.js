@@ -39,10 +39,10 @@ function init() {
           setGame(16, 16, 40);
           break;
         case "level3":
-          setGame(30, 16, 99);
+          setGame(16, 30, 99);
           break;
         case "level4":
-          setGame(30, 24, 160);
+          setGame(18, 40, 160);
           break;
         case "levelSet":
           level.style.display = "none";
